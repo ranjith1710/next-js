@@ -1,16 +1,15 @@
-// db.js
-import mongoose from "mongoose";
+import {connect} from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/abdul';
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(MONGODB_URI);
-
-    console.log("Connected to MongoDB");
-  } catch (error) {
+    await connect(MONGODB_URI)} 
+    catch (error) {
     console.error("Error connecting to MongoDB:", error);
-  }
+    }
 };
+
+connectDB();
 
 export default connectDB;

@@ -1,38 +1,30 @@
-import connectDB from './db/dbConnection';
-// import ExampleModel from './models/ExampleModel';
-import TestCollectionModel from './models/TestCollection';
-
-connectDB()
+'use client'
+import { useEffect, useState } from 'react';
+// import connectDB from './db/dbConnection';
+// import PlayersDataModel from './models/PlayersData';
+import axios from 'axios';
+// import { error } from 'console';
 
 const Home = () => {
- 
-  // const newExample = new ExampleModel({
-  //   name: 'Example Name',
-  //   description: 'This is an example description.',
-  // });
+  const [data, setData] = useState([]);
 
+  useEffect(()=>{
+    axios.get('http://localhost:3000/abdul/playersdatas').then(response =>{
+      setData(response);
+    }).catch(error =>{
+      console.error('error',error);
+    })
+  },[]);
 
-  // newExample.save().then(res=>console.log(res)).catch(err=>console.log(err));
+  // connectDB().then(()=>(
+  //   PlayersDataModel?.find({})?.then((response)=>{
+  //     console.log('response',response);
+  //   }).catch((err)=>{
+  //     console.log('error',err);
+  //   })
+  // ))
 
-  // ExampleModel.find({}).then(data=>{
-  //   console.log("fetched all data")
-  //   console.log(data)
-  // }).catch(err=>{
-  //   console.log("error in fetching all data")
-  //   console.log(err)
-  // })
-
-  const newData = new TestCollectionModel({
-    name : "Ranjith"
-  })
-  
-newData.save().then(data=>{
-
-  console.log("data inserted successfully")
-  console.log(data)
-})
- 
-  
+  // console.info('data', data);
 
   return (
     <div>
